@@ -25,8 +25,35 @@ const createUser = async (req, res) => {
   return res.send("Created");
 };
 
+const deleteUser = async (req, res) => {
+  const userId = req.params.id;
+  const result = await UserModel.deleteOne({ userId });
+  console.log(result);
+  return res.send("Deleted SuccessFully");
+};
+
+const updateUser = async (req, res) => {
+  const { name, gender, address, mobile, skills } = req.body;
+  const userId = req.params.id;
+  const result = await UserModel.updateOne(
+    { userId },
+    {
+      $set: {
+        name,
+        gender,
+        address,
+        mobile,
+        skills
+      },
+    }
+  );
+  return res.send("Updated Succesfully");
+};
+
 module.exports = {
   getAllUsers,
   createUser,
   getSingleUser,
+  deleteUser,
+  updateUser,
 };
