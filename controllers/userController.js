@@ -43,7 +43,7 @@ const updateUser = async (req, res) => {
         gender,
         address,
         mobile,
-        skills
+        skills,
       },
     }
   );
